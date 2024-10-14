@@ -1,6 +1,9 @@
 package com.siemens.webstore;
 
 import com.siemens.webstore.models.Catalog;
+import com.siemens.webstore.models.GuestUser;
+import com.siemens.webstore.models.RegisteredUser;
+import com.siemens.webstore.models.User;
 import com.siemens.webstore.services.CatalogService;
 import com.siemens.webstore.services.DbService;
 
@@ -48,6 +51,21 @@ public class App {
         System.out.println(DbService.count);
         //2nd time object
         //dbService1=DbService.getInstance();
+
+        //inheritance
+        GuestUser guestUser=new GuestUser("Param@gmail.com");
+        RegisteredUser registeredUser=new RegisteredUser("User1",
+                "Test@123","user@gmail.com");
+
+        //polymorphism
+         User user=new RegisteredUser("User1",
+                 "Test@123","user@gmail.com");
+
+         System.out.println(user.validateEmail());
+          System.out.println(user);
+
+         // User user1=new User();
+       // System.out.println(user1);
 
 
     }

@@ -1,6 +1,6 @@
 package com.siemens.webstore.models;
 
-public class User {
+public abstract class User {
 
     protected int visitorCount;
     protected String email;
@@ -13,4 +13,5 @@ public class User {
     {
         System.out.println("User Instance to be created");
     }
+    public abstract boolean validateEmail();
 }

@@ -1,5 +1,7 @@
 package com.siemens.webstore.models;
 
+import java.util.regex.Pattern;
+
 public class RegisteredUser extends User{
 
     private String userName;
@@ -22,5 +24,24 @@ public class RegisteredUser extends User{
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    //static block
+    static{
+        System.out.println("Registered User Class Invoked...");
+    }
+
+    //instance block
+    {
+        System.out.println("Registered User Instance to be created");
+    }
+
+    @Override
+    public boolean validateEmail() {
+        Pattern pattern=Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        if(pattern.matcher(this.email).matches()){
+            return true;
+        }else
+            return false;
     }
 }

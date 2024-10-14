@@ -1,5 +1,7 @@
 package com.siemens.webstore.models;
 
+import com.siemens.webstore.exceptions.ProductCostException;
+
 /*import lombok.*;
 
 @AllArgsConstructor
@@ -15,7 +17,10 @@ public class Product {
         this.productId = productId;
         this.name = name;
         this.description = description;
-        this.cost = cost;
+        if(cost<0)
+            throw new ProductCostException("Cost cannot be negative number");
+        else
+          this.cost = cost;
     }
 
     public Product() {
