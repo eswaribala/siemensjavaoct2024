@@ -9,14 +9,15 @@ public class ProductService {
         Product[] products=new Product[10];
         Faker faker=new Faker();
         for(int i=0;i<products.length;i++){
-            products[i]=new Product(faker.random().nextLong(100000),
+            products[i]=new Product(faker.random().nextLong(1000),
                     faker.book().title(),
                     faker.book().author(),
                     faker.random().nextInt(1000,50000));
         }
         //see the products
         for(Product product : products){
-            System.out.println(product);
+            if(product.getProductId()>500)
+               System.out.println(product);
         }
 
 
