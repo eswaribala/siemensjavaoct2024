@@ -2,6 +2,7 @@ package com.siemens.webstore;
 
 import com.siemens.webstore.models.Catalog;
 import com.siemens.webstore.services.CatalogService;
+import com.siemens.webstore.services.DbService;
 
 import java.util.Scanner;
 
@@ -40,6 +41,14 @@ public class App {
         catalogService.addCatalog(new Catalog(1,"56324654",
                 "Home Appliances"));
         System.out.println(catalogService.getCatalogName(1));
+
+       //DbService
+        //1st object
+        DbService dbService1=DbService.getInstance();
+        System.out.println(DbService.count);
+        //2nd time object
+        //dbService1=DbService.getInstance();
+
 
     }
 
