@@ -1,5 +1,8 @@
 package com.siemens.webstore;
 
+import com.siemens.webstore.models.Catalog;
+import com.siemens.webstore.services.CatalogService;
+
 import java.util.Scanner;
 
 public class App {
@@ -11,7 +14,7 @@ public class App {
 
     public static void readApp(){
         //read input from user
-
+/*
         Scanner scanner=new Scanner(System.in);
         //declare two variables
         String firstName="";
@@ -25,7 +28,18 @@ public class App {
 
         //show the outcome
         System.out.println("First Name="+firstName);
-        System.out.println("Phone No="+phoneNo);
+        System.out.println("Phone No="+phoneNo);*/
+
+        /**/
+
+        CatalogService catalogService=new CatalogService();
+       /* Catalog catalog=new Catalog();
+        catalog.setCatalogId(1);
+        catalog.setName("Electronics");
+        catalog.setDescription("Home Appliances");*/
+        catalogService.addCatalog(new Catalog(1,"56324654",
+                "Home Appliances"));
+        System.out.println(catalogService.getCatalogName(1));
 
     }
 
