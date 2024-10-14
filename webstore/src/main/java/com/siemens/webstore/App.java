@@ -1,5 +1,6 @@
 package com.siemens.webstore;
 
+import com.siemens.webstore.exceptions.DbServiceSingletonException;
 import com.siemens.webstore.models.Catalog;
 import com.siemens.webstore.models.GuestUser;
 import com.siemens.webstore.models.RegisteredUser;
@@ -47,8 +48,16 @@ public class App {
 
        //DbService
         //1st object
-        DbService dbService1=DbService.getInstance();
-        System.out.println(DbService.count);
+
+        try {
+            DbService dbService1=DbService.getInstance();
+            System.out.println(DbService.count);
+        } catch (DbServiceSingletonException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
         //2nd time object
         //dbService1=DbService.getInstance();
 
