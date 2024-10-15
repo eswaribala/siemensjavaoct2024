@@ -24,10 +24,8 @@ public class App {
         HashMap<Long,Product> productHashMap=new HashMap<>();
 
         for(Product product: ProductService.generateProducts()){
-
             productHashMap.put(product.getProductId(),product);
         }
-
         //retrieve elements from hashmap
 
        Iterator iterator= productHashMap.entrySet().iterator();
