@@ -15,13 +15,42 @@ import com.siemens.webstore.services.CategorySortService;
 import com.siemens.webstore.services.ProductService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
+        //HashMap
+
+        HashMap<Long,Product> productHashMap=new HashMap<>();
+
+        for(Product product: ProductService.generateProducts()){
+
+            productHashMap.put(product.getProductId(),product);
+        }
+
+        //retrieve elements from hashmap
+
+       Iterator iterator= productHashMap.entrySet().iterator();
+        Map.Entry<Long,Product> mapEntry=null;
+       while (iterator.hasNext()){
+           mapEntry=(Map.Entry<Long,Product>)iterator.next();
+           System.out.println(mapEntry.getKey()+"->"+mapEntry.getValue() );
+
+       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         //priorityqueue
 
         PriorityQueue<Category> categoryPriorityQueue=new
@@ -35,7 +64,7 @@ public class App {
             System.out.println(categoryPriorityQueue.poll());
         }
 
-
+*/
 
 
         //set
