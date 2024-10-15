@@ -10,4 +10,6 @@ public interface CatalogDao {
     boolean addCatalog(Catalog catalog) throws IOException;
     Catalog[] getCatalogs() throws IOException, ClassNotFoundException;
 
+    void close() throws IOException;
+
 }

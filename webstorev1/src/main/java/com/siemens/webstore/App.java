@@ -15,26 +15,32 @@ import java.io.IOException;
 
 public class App {
     public static void main(String[] args) {
-
-        try {
+/*
+       try {
             CatalogDao catalogDao=new CatalogImpl("logs","catalog.dat");
             for(Catalog catalog : CatalogService.generateCatalogs()){
                 catalogDao.addCatalog(catalog);
             }
-
+            catalogDao.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        /*
+
+ */
+
+        CatalogDao catalogDao= null;
         try {
-            ProductDao productDao=new ProductImpl("logs","product.csv");
-            for(Product product:productDao.getProducts()){
-                System.out.println(product);
+            catalogDao = new CatalogImpl("logs","catalog.dat");
+            for(Catalog catalog : catalogDao.getCatalogs()){
+                if(catalog!=null)
+                  System.out.println(catalog);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        } catch (ClassNotFoundException e) {
+
         }
-*/
+
 
     }
 

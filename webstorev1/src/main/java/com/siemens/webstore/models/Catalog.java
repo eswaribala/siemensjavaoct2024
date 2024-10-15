@@ -1,6 +1,7 @@
 package com.siemens.webstore.models;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Catalog implements Serializable {
@@ -76,5 +77,15 @@ public class Catalog implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Catalog{" +
+                "catalogId=" + catalogId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", categories=" + Arrays.toString(categories) +
+                '}';
     }
 }

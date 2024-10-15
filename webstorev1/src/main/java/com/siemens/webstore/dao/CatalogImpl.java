@@ -23,8 +23,8 @@ public class CatalogImpl implements CatalogDao{
             file.createNewFile();
         else
             System.out.println("File already exists");
-
-        fileOutputStream=new FileOutputStream(file,true);
+        boolean append=file.exists();
+        fileOutputStream=new FileOutputStream(file,append);
         objectOutputStream=new ObjectOutputStream(fileOutputStream);
 
     }
@@ -50,6 +50,7 @@ public class CatalogImpl implements CatalogDao{
             while((object=objectInputStream.readObject())!=null){
                 catalogs[i]=(Catalog) object;
                 i++;
+                object=null;
             }
 
 
@@ -58,10 +59,17 @@ public class CatalogImpl implements CatalogDao{
         }finally {
             fileInputStream.close();
             objectInputStream.close();
+            return catalogs;
         }
 
 
-        return catalogs;
 
+
+    }
+
+    @Override
+    public void close() throws IOException {
+        fileOutputStream.close();
+        objectOutputStream.close();
     }
 }
