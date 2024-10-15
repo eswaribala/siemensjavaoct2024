@@ -1,5 +1,6 @@
 package com.siemens.webstore;
 
+import com.github.javafaker.Faker;
 import com.siemens.webstore.exceptions.DbServiceSingletonException;
 import com.siemens.webstore.models.Catalog;
 import com.siemens.webstore.models.GuestUser;
@@ -7,7 +8,9 @@ import com.siemens.webstore.models.RegisteredUser;
 import com.siemens.webstore.models.User;
 import com.siemens.webstore.services.CatalogService;
 import com.siemens.webstore.services.DbService;
+import com.siemens.webstore.services.GuestUserService;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -76,7 +79,44 @@ public class App {
          // User user1=new User();
        // System.out.println(user1);
 
+        //sort the registered users
+        RegisteredUser[] registeredUsers=generateRegisteredUsers();
+        Arrays.sort( registeredUsers);
+        for(RegisteredUser registeredUser1 : registeredUsers){
+            System.out.println(registeredUser1);
+        }
+
+        //sort the guest users
+        GuestUser[] guestUsers=generateGuestUsers();
+        Arrays.sort(guestUsers,new GuestUserService());
+
+        for(GuestUser guestUser1 : guestUsers){
+            System.out.println(guestUser1);
+        }
+
+
 
     }
 
+    public static RegisteredUser[] generateRegisteredUsers(){
+
+        RegisteredUser[] registeredUsers=new RegisteredUser[100];
+        Faker faker=new Faker();
+        for(int i=0;i<registeredUsers.length;i++){
+            registeredUsers[i]=new RegisteredUser(faker.name().firstName(),faker.internet().password(),
+                    faker.internet().emailAddress());
+        }
+        return registeredUsers;
+    }
+
+
+    public static GuestUser[] generateGuestUsers(){
+
+       GuestUser[] guestUsers=new GuestUser[100];
+        Faker faker=new Faker();
+        for(int i=0;i<guestUsers.length;i++){
+            guestUsers[i]=new GuestUser(faker.internet().emailAddress());
+        }
+        return guestUsers;
+    }
 }

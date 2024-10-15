@@ -2,7 +2,7 @@ package com.siemens.webstore.models;
 
 import java.util.regex.Pattern;
 
-public class RegisteredUser extends User{
+public class RegisteredUser extends User implements Comparable<RegisteredUser>{
 
     private String userName;
     private String password;
@@ -43,5 +43,10 @@ public class RegisteredUser extends User{
             return true;
         }else
             return false;
+    }
+
+    @Override
+    public int compareTo(RegisteredUser registeredUser) {
+       return this.userName.compareTo(registeredUser.userName);
     }
 }

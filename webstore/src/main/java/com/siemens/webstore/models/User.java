@@ -3,7 +3,7 @@ package com.siemens.webstore.models;
 public abstract class User {
 
     protected int visitorCount;
-    protected String email;
+    public String email;
     //static block
     static{
         System.out.println("User Class Invoked...");
