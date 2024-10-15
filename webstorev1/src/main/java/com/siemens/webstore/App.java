@@ -16,10 +16,50 @@ import com.siemens.webstore.services.ProductService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
 public class App {
     public static void main(String[] args) {
+        //priorityqueue
+
+        PriorityQueue<Category> categoryPriorityQueue=new
+                PriorityQueue<Category>(new CategorySortService());
+
+        for(Category category : CategoryService.generateCategories()){
+            categoryPriorityQueue.offer(category);
+        }
+
+        while(!categoryPriorityQueue.isEmpty()){
+            System.out.println(categoryPriorityQueue.poll());
+        }
+
+
+
+
+        //set
+/*
+        HashSet<Long> productSetA=new HashSet<Long>();
+        HashSet<Long> productSetB=new HashSet<Long>();
+        for(Product product : ProductService.generateProducts()){
+            if(product.getProductId()%2==0)
+                productSetA.add(product.getProductId());
+            else
+                productSetB.add(product.getProductId());
+        }
+
+        System.out.println("Before Union="+productSetA.size());
+        //union
+        productSetA.addAll(productSetB);
+        System.out.println("Before Union="+productSetA.size());
+        //intersection
+        productSetA.retainAll(productSetB);
+        System.out.println("After Intersection="+productSetA.size());
+*/
+
+
+        /*
         ArrayList<Category> categories=CategoryService.generateCategories();
         categories.sort(new CategorySortService());
 
@@ -29,7 +69,7 @@ public class App {
             System.out.println(iterator.next());
         }
 
-
+*/
 
 
 /*
