@@ -1,17 +1,21 @@
 package com.siemens.webstore.models;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     private int categoryId;
     private String categoryName;
     private String subCategoryName;
 
-    private Product[] products;
+    private transient String secretKey;
 
-    public Category(int categoryId, String categoryName, String subCategoryName, Product[] products) {
+
+
+    public Category(int categoryId, String categoryName, String subCategoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.subCategoryName = subCategoryName;
-        this.products = products;
+
     }
 
     public int getCategoryId() {
@@ -38,11 +42,11 @@ public class Category {
         this.subCategoryName = subCategoryName;
     }
 
-    public Product[] getProducts() {
-        return products;
+    public String getSecretKey() {
+        return secretKey;
     }
 
-    public void setProducts(Product[] products) {
-        this.products = products;
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
     }
 }

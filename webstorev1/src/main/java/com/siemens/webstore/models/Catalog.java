@@ -1,12 +1,14 @@
 package com.siemens.webstore.models;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
-public class Catalog {
+public class Catalog implements Serializable {
     private long catalogId;
     private String name;
     private String description;
     private Category[] categories;
+
 
 
 
