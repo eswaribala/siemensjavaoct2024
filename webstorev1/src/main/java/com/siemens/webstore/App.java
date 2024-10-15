@@ -12,12 +12,20 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
 
-        try {
+       /* try {
             ProductDao productDao=new ProductImpl("logs","product.csv");
             for(Product product : ProductService.generateProducts()){
                 productDao.addProduct(product);
             }
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+        try {
+            ProductDao productDao=new ProductImpl("logs","product.csv");
+            for(Product product:productDao.getProducts()){
+                System.out.println(product);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
