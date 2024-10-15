@@ -36,7 +36,7 @@ public class ProductImpl  implements ProductDao{
           bufferedWriter.write(",");
           bufferedWriter.write(product.getDescription());
           bufferedWriter.write(",");
-          bufferedWriter.write(product.getCost());
+          bufferedWriter.write(String.valueOf(product.getCost()));
           bufferedWriter.write("\n");
           status=true;
 
