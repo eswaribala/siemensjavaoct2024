@@ -9,12 +9,24 @@ import com.siemens.webstore.dao.ProductImpl;
 import com.siemens.webstore.models.Catalog;
 import com.siemens.webstore.models.Product;
 import com.siemens.webstore.services.CatalogService;
+import com.siemens.webstore.services.CategoryService;
 import com.siemens.webstore.services.ProductService;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 public class App {
     public static void main(String[] args) {
+
+        //get data from array list
+        Iterator iterator= CategoryService.generateCategories().iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+
+
+
 /*
        try {
             CatalogDao catalogDao=new CatalogImpl("logs","catalog.dat");
@@ -26,7 +38,7 @@ public class App {
             throw new RuntimeException(e);
         }
 
- */
+
 
         CatalogDao catalogDao= null;
         try {
@@ -41,7 +53,7 @@ public class App {
 
         }
 
-
+ */
     }
 
 
