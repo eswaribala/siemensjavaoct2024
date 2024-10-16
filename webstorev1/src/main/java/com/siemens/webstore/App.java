@@ -20,7 +20,7 @@ import java.util.*;
 public class App {
     public static void main(String[] args) {
         //HashMap
-
+/*
         HashMap<Long,Product> productHashMap=new HashMap<>();
 
         for(Product product: ProductService.generateProducts()){
@@ -37,7 +37,7 @@ public class App {
        }
 
 
-
+*/
 
 
 
@@ -86,9 +86,21 @@ public class App {
 */
 
 
-        /*
+
         ArrayList<Category> categories=CategoryService.generateCategories();
-        categories.sort(new CategorySortService());
+        Comparator<Category> comparator=(category1,category2)->{
+            if(category1.getCategoryId() == category2.getCategoryId())
+                return 0;
+            else if (category1.getCategoryId()>category2.getCategoryId()) {
+                return 1;
+
+            }
+            else
+                return -1;
+        };
+
+
+        categories.sort(comparator);
 
         //get data from array list
         Iterator iterator= categories.iterator();
@@ -96,7 +108,7 @@ public class App {
             System.out.println(iterator.next());
         }
 
-*/
+
 
 
 /*
