@@ -15,10 +15,16 @@ public class Catalog{
     private long catalogId;
     private String name;
     private String description;
-    //has relationship
+
     private List<Category> categoryList;
+
+    public Catalog(long catalogId, String name, String description) {
+        this.catalogId = catalogId;
+        this.name = name;
+        this.description = description;
+    }
     @Autowired
-    public Catalog(List<Category> categoryList) {
+    public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
     }
 }

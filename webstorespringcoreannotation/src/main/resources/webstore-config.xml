@@ -15,6 +15,9 @@
 
 
 <bean id="catalog" class="com.siemens.webstore.models.Catalog" >
+ <constructor-arg index="0" value="4989"></constructor-arg>
+    <constructor-arg index="1" value="Electronics"></constructor-arg>
+    <constructor-arg index="2" value="Home Appliances"></constructor-arg>
 
 </bean>
 
@@ -28,6 +31,13 @@
 
         <property name="categoryId" value="124"></property>
         <property name="categoryName" value="Refrigerator"></property>
+        <property name="subCategoryName" value="Samsung"></property>
+    </bean>
+
+    <bean id="category3" class="com.siemens.webstore.models.Category">
+
+        <property name="categoryId" value="125"></property>
+        <property name="categoryName" value="Mircowave"></property>
         <property name="subCategoryName" value="Samsung"></property>
     </bean>
     <bean id="creditCard" class="com.siemens.webstore.models.CreditCard">

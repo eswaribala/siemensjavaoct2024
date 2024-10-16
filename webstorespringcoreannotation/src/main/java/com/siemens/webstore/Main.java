@@ -16,6 +16,9 @@ public class Main {
         ApplicationContext applicationContext=new
                 ClassPathXmlApplicationContext("webstore-config.xml");
 
+        //IOC
+        Catalog catalog= (Catalog) applicationContext.getBean("catalog");
+        System.out.println(catalog);
 
     }
 }
