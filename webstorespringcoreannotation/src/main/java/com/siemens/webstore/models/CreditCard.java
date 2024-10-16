@@ -1,5 +1,6 @@
 package com.siemens.webstore.models;
 
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,8 @@ public class CreditCard {
     protected long creditCardNo;
     protected int cvv;
 
-
+    @PreDestroy
+    public void beforeDestroy(){
+        System.out.println("Pre destroy invoked....");
+    }
 }

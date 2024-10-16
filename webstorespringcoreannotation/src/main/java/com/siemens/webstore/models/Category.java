@@ -1,5 +1,6 @@
 package com.siemens.webstore.models;
 
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,8 @@ public class Category {
     private int categoryId;
     private String categoryName;
     private String subCategoryName;
-
+    @PreDestroy
+    public void beforeDestroy(){
+        System.out.println("Pre destroy invoked....");
+    }
 }

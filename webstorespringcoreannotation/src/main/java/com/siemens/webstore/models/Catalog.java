@@ -1,5 +1,6 @@
 package com.siemens.webstore.models;
 
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,8 +33,14 @@ public class Catalog{
         this.description = description;
     }
     @Bean
+
     public RestTemplate getRestTemplateInstance(){
         //java instance into spring bean
         return new RestTemplate();
+    }
+
+    @PreDestroy
+    public void beforeDestroy(){
+        System.out.println("Pre destroy invoked....");
     }
 }

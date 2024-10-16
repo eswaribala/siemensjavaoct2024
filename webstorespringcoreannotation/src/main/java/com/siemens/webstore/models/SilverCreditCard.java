@@ -1,5 +1,6 @@
 package com.siemens.webstore.models;
 
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,8 @@ public class SilverCreditCard extends CreditCard{
         ResponseEntity responseEntity=restTemplate.getForEntity("https://restcountries.com/v2/all",String.class);
          return responseEntity.getBody().toString();
     }
-
+    @PreDestroy
+    public void beforeDestroy(){
+        System.out.println("Pre destroy invoked....");
+    }
 }

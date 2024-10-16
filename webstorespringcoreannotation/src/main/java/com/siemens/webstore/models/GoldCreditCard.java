@@ -1,5 +1,6 @@
 package com.siemens.webstore.models;
 
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,8 @@ import org.springframework.stereotype.Component;
 public class GoldCreditCard extends CreditCard{
 
     private float cashback;
+    @PreDestroy
+    public void beforeDestroy(){
+        System.out.println("Pre destroy invoked....");
+    }
 }
