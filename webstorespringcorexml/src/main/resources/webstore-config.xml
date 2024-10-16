@@ -4,8 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <bean id="catalog" class="com.siemens.webstore.models.Catalog" >
-
-
+<!-- dependency injection-->
+    <constructor-arg index="0" name="catalogId" value="1"></constructor-arg>
+    <constructor-arg index="1" name="name" value="Electronics"></constructor-arg>
+    <constructor-arg index="2" name="description" value="Home Appliances"></constructor-arg>
 </bean>
 
 

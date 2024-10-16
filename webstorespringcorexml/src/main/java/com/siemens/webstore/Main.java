@@ -20,10 +20,16 @@ public class Main {
         xmlBeanDefinitionReader.loadBeanDefinitions(resource);
         //step3
         //Implementing IOC
-        Catalog catalog= (Catalog) defaultListableBeanFactory.getBean("catalog");
-        System.out.println(catalog.getCatalogId());
+        Catalog catalog1= (Catalog) defaultListableBeanFactory.getBean("catalog");
+        //After DI
+        System.out.println(catalog1);
 
+        //Singleton
+        Catalog catalog2= (Catalog) defaultListableBeanFactory.getBean("catalog");
 
+       catalog2.setName("Furniture");
+       catalog2.setDescription("Home Furniture");
+        System.out.println(catalog1);
 
 
     }
