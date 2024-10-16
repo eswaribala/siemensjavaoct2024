@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<context:annotation-config></context:annotation-config>
+<context:component-scan base-package="com.siemens.webstore.*">
+    
+</context:component-scan>
+
+
+<bean id="catalog" class="com.siemens.webstore.models.Catalog" >
+<!-- dependency injection-->
+    <constructor-arg index="0" name="catalogId" value="1"></constructor-arg>
+    <constructor-arg index="1" name="name" value="Electronics"></constructor-arg>
+    <constructor-arg index="2" name="description" value="Home Appliances"></constructor-arg>
+    <constructor-arg index="3" name="categoryList">
+        <list>
+            <ref bean="category1"></ref>
+            <ref bean="category2"></ref>
+        </list>
+    </constructor-arg>
+</bean>
+
+<bean id="category1" class="com.siemens.webstore.models.Category">
+
+    <property name="categoryId" value="123"></property>
+    <property name="categoryName" value="TV"></property>
+    <property name="subCategoryName" value="Sony"></property>
+</bean>
+    <bean id="category2" class="com.siemens.webstore.models.Category">
+
+        <property name="categoryId" value="124"></property>
+        <property name="categoryName" value="Refrigerator"></property>
+        <property name="subCategoryName" value="Samsung"></property>
+    </bean>
+    <bean id="creditCard" class="com.siemens.webstore.models.CreditCard">
+      <property name="creditCardNo" value="3462573656435"></property>
+      <property name="cvv"  value="777"></property>
+    </bean>
+    <bean id="silverCreditCard" class="com.siemens.webstore.models.SilverCreditCard" parent="creditCard">
+       <property name="usageLimit" value="50000"></property>
+    </bean>
+    <bean id="goldCreditCard" class="com.siemens.webstore.models.GoldCreditCard" parent="creditCard">
+       <property name="cashback" value="0.10"></property>
+    </bean>
+
+</beans>
