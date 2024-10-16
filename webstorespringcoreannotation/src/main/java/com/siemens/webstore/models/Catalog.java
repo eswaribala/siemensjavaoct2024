@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
+@Configuration
 public class Catalog{
     private long catalogId;
     private String name;
@@ -27,5 +31,9 @@ public class Catalog{
         this.name = name;
         this.description = description;
     }
-
+    @Bean
+    public RestTemplate getRestTemplateInstance(){
+        //java instance into spring bean
+        return new RestTemplate();
+    }
 }

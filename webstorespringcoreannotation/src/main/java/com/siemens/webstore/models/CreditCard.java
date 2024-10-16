@@ -14,4 +14,6 @@ import org.springframework.stereotype.Component;
 public class CreditCard {
     protected long creditCardNo;
     protected int cvv;
+
+
 }
