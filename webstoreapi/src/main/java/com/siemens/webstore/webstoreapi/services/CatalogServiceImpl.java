@@ -43,12 +43,14 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<Catalog> findCatalogByName(String catalogName) {
 
-        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
+      /*  CriteriaBuilder cb=entityManager.getCriteriaBuilder();
         CriteriaQuery<Catalog> criteriaQuery=cb.createQuery(Catalog.class);
         Root<Catalog> root=criteriaQuery.from(Catalog.class);
         Predicate predicate= cb.equal(root.get("catalogName"),catalogName);
         criteriaQuery.where(predicate);
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        return entityManager.createQuery(criteriaQuery).getResultList();*/
+
+          return this.catalogRepository.findByCatalogName(catalogName);
     }
 
     @Override
