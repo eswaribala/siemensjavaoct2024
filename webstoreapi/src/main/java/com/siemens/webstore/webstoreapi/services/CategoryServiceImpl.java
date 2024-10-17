@@ -36,9 +36,9 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<CategoryResponse> findCategoriesByCatalogId(long catalogId) {
-        List<Category> categories= this.categoryRepository
-                .findCategoriesByCatalogId(catalogId);
-       return categories.stream()
+
+       return this.categoryRepository
+               .findCategoriesByCatalogId(catalogId).stream()
                 .map(c->new CategoryResponse(c.getCategoryId(),
                                 c.getCategoryName(),c.getCatalog().getCatalogName())).toList();
 
