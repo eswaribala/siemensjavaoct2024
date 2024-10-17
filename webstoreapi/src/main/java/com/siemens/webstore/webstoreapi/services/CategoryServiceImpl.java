@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.services;
 
+import com.siemens.webstore.webstoreapi.dtos.CategoryResponse;
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.models.Category;
 import com.siemens.webstore.webstoreapi.repositories.CategoryRepository;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
@@ -32,13 +35,13 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<String> findCategoriesByCatalogId(long catalogId) {
+    public List<CategoryResponse> findCategoriesByCatalogId(long catalogId) {
         List<Category> categories= this.categoryRepository
                 .findCategoriesByCatalogId(catalogId);
-       return  categories.stream()
-                .map(c->c.getCategoryId()
-                        +","+c.getCategoryName()
-                        +","+c.getCatalog().getCatalogName()).toList();
+       return categories.stream()
+                .map(c->new CategoryResponse(c.getCategoryId(),
+                                c.getCategoryName(),c.getCatalog().getCatalogName())).toList();
+
 
     }
 

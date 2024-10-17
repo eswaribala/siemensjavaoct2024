@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.controllers;
 
+import com.siemens.webstore.webstoreapi.dtos.CategoryResponse;
 import com.siemens.webstore.webstoreapi.dtos.ResponseWrapper;
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.models.Category;
@@ -37,7 +38,7 @@ public class CategoryController {
 
     @GetMapping("/v1.0/{catalogId}")
     public ResponseEntity<ResponseWrapper> getCategoriesBYCatalogId(@PathVariable("catalogId") long catalogId){
-        List<String> categories =this.categoryService.findCategoriesByCatalogId(catalogId);
+        List<CategoryResponse> categories =this.categoryService.findCategoriesByCatalogId(catalogId);
         if(categories.size()>0)
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ResponseWrapper(categories));

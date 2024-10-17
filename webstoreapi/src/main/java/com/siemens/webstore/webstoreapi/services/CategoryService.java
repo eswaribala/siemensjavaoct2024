@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.services;
 
+import com.siemens.webstore.webstoreapi.dtos.CategoryResponse;
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.models.Category;
 
@@ -9,7 +10,7 @@ public interface CategoryService {
 
     Category addCategory(Category category);
     List<Category> findAllCategories();
-    List<String> findCategoriesByCatalogId(long catalogId);
+    List<CategoryResponse> findCategoriesByCatalogId(long catalogId);
 
     Category findCategoryById(long categoryId);
     List<Category> findCategoryByName(String categoryName);
