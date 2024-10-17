@@ -16,12 +16,14 @@ public class CategoryServiceImpl implements CategoryService{
     private CatalogService catalogService;
     @Override
     public Category addCategory(Category category) {
-      Catalog catalog= catalogService.findCatalogById(category.getCatalog().getCatalogId());
-       if(catalog!=null){
-           category.setCatalog(catalog);
-           return this.categoryRepository.save(category);
-       }else
-         return null;
+      List<Catalog> catalogs= catalogService.findCatalogByName(category.getCatalog().getCatalogName());
+      Catalog catalog=catalogs.stream().findFirst().orElse(null);
+      if(catalog!=null){
+          category.setCatalog(catalog);
+          return this.categoryRepository.save(category);
+      }else
+          return null;
+
     }
 
     @Override
