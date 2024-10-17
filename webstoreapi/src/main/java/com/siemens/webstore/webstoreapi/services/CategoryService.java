@@ -9,6 +9,8 @@ public interface CategoryService {
 
     Category addCategory(Category category);
     List<Category> findAllCategories();
+    List<String> findCategoriesByCatalogId(long catalogId);
+
     Category findCategoryById(long categoryId);
     List<Category> findCategoryByName(String categoryName);
     default Category updateCategory(long categoryId, String categoryName){

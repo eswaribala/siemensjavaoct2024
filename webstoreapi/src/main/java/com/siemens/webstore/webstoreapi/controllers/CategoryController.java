@@ -1,6 +1,7 @@
 package com.siemens.webstore.webstoreapi.controllers;
 
 import com.siemens.webstore.webstoreapi.dtos.ResponseWrapper;
+import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.models.Category;
 import com.siemens.webstore.webstoreapi.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,16 @@ public class CategoryController {
     @GetMapping("/v1.0")
     public List<Category> getAllCategories(){
         return this.categoryService.findAllCategories();
+    }
+
+    @GetMapping("/v1.0/{catalogId}")
+    public ResponseEntity<ResponseWrapper> getCategoriesBYCatalogId(@PathVariable("catalogId") long catalogId){
+        List<String> categories =this.categoryService.findCategoriesByCatalogId(catalogId);
+        if(categories.size()>0)
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseWrapper(categories));
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseWrapper("Category Not found"));
     }
 }
