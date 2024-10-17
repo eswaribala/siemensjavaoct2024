@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="Category_Id")
+    @Schema(hidden = true)
     private long categoryId;
     @Column(name="Category_Name",nullable = false,length = 100)
     private String categoryName;

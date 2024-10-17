@@ -15,7 +15,7 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Override
     public Catalog addCatalog(Catalog catalog) {
-        if(catalog.getCatalogId()>0)
+        if(catalog.getCatalogName().length()>0)
             return this.catalogRepository.save(catalog);
         else
           return  null;
