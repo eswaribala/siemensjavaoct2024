@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Catalog {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Catalog_Id")
     private long catalogId;
     @Column(name="Catalog_Name",nullable = false,length = 50)
