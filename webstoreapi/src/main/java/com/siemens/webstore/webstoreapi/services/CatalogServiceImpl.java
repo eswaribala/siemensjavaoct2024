@@ -2,6 +2,12 @@ package com.siemens.webstore.webstoreapi.services;
 
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.repositories.CatalogRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +18,9 @@ public class CatalogServiceImpl implements CatalogService {
 
     @Autowired
     private CatalogRepository catalogRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Override
     public Catalog addCatalog(Catalog catalog) {
@@ -29,6 +38,17 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public Catalog findCatalogById(long catalogId) {
         return this.catalogRepository.findById(catalogId).orElse(null);
+    }
+
+    @Override
+    public List<Catalog> findCatalogByName(String catalogName) {
+
+        CriteriaBuilder cb=entityManager.getCriteriaBuilder();
+        CriteriaQuery<Catalog> criteriaQuery=cb.createQuery(Catalog.class);
+        Root<Catalog> root=criteriaQuery.from(Catalog.class);
+        Predicate predicate= cb.equal(root.get("catalogName"),catalogName);
+        criteriaQuery.where(predicate);
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     @Override

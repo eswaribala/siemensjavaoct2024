@@ -53,6 +53,20 @@ public class CatalogController {
 
     }
 
+    @GetMapping("/v1.0/filter/{catalogName}")
+    public ResponseEntity<ResponseWrapper> findCatalogById(@PathVariable("catalogName") String catalogName){
+
+        List<Catalog> catalogList=this.catalogService.findCatalogByName(catalogName);
+        if(catalogList.size()>0)
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseWrapper(catalogList));
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseWrapper("Catalog Instance not available"));
+
+
+    }
+
     @PutMapping("/v1.0")
     public ResponseEntity<ResponseWrapper> updateCatalogById(@RequestParam("catalogId") long catalogId,
                                                              @RequestParam("catalogName") String catalogName){

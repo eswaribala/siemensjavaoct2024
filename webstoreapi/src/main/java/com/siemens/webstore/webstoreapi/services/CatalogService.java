@@ -9,7 +9,7 @@ public interface CatalogService {
     Catalog addCatalog(Catalog catalog);
     List<Catalog> findAllCatalogs();
     Catalog findCatalogById(long catalogId);
-
+    List<Catalog> findCatalogByName(String catalogName);
     default Catalog updateCatalog(long catalogId, String catalogName){
         return null;
     }
