@@ -57,7 +57,7 @@ public class UserController {
         }
 
     }
-    @PostMapping(value="/signin")
+    @PostMapping(value="/v1.0/signin")
     public ResponseEntity<JwtResponse> generateJwtToken(@RequestBody JwtRequest jwtRequest) {
 
         System.out.println(jwtRequest.getUserName()+""+jwtRequest.getUserPwd());
