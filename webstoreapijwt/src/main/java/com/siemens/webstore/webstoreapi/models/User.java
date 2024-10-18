@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="User")
+@Table(name="Siemens_User")
 public class User {
     @Id
     @Column(name="User_Name",length = 50)
