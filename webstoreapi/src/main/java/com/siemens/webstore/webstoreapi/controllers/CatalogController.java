@@ -1,28 +1,32 @@
 package com.siemens.webstore.webstoreapi.controllers;
 
+import com.siemens.webstore.webstoreapi.dtos.CatalogRequest;
 import com.siemens.webstore.webstoreapi.dtos.ResponseWrapper;
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.services.CatalogService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("catalogs")
+@Validated
 public class CatalogController {
 
     @Autowired
     private CatalogService catalogService;
 
     @PostMapping("/v1.0")
-    public ResponseEntity<ResponseWrapper> saveCatalog(@RequestBody Catalog catalog){
+    public ResponseEntity<ResponseWrapper> saveCatalog(@Valid @RequestBody CatalogRequest catalogRequest){
 
-        Catalog catalogInstance=this.catalogService.addCatalog(catalog);
+        Catalog catalogInstance=this.catalogService.addCatalog(catalogRequest);
         if(catalogInstance!=null)
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(new ResponseWrapper(catalogInstance));

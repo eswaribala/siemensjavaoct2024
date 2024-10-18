@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.services;
 
+import com.siemens.webstore.webstoreapi.dtos.CatalogRequest;
 import com.siemens.webstore.webstoreapi.models.Catalog;
 import com.siemens.webstore.webstoreapi.repositories.CatalogRepository;
 import jakarta.persistence.EntityManager;
@@ -23,9 +24,16 @@ public class CatalogServiceImpl implements CatalogService {
     private EntityManager entityManager;
 
     @Override
-    public Catalog addCatalog(Catalog catalog) {
-        if(catalog.getCatalogName().length()>0)
+    public Catalog addCatalog(CatalogRequest catalogRequest) {
+        Catalog catalog=Catalog.builder()
+                .catalogId(catalogRequest.getCatalogId())
+                .catalogName(catalogRequest.getCatalogName())
+                .createdOn(catalogRequest.getCreatedOn())
+                .build();
+
+        if(catalog.getCatalogName().length()>0) {
             return this.catalogRepository.save(catalog);
+        }
         else
           return  null;
     }

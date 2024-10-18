@@ -42,12 +42,10 @@ public class SubProductController {
     public ResponseEntity<ResponseWrapper> findSubProductById(@PathVariable("subProductId") String subProductId){
 
         SubProduct subProductInstance=this.subProductService.findSubProductById(subProductId);
-        if(subProductInstance!=null)
+
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ResponseWrapper(subProductInstance));
-        else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ResponseWrapper("SubProduct Instance not available"));
+
 
 
     }

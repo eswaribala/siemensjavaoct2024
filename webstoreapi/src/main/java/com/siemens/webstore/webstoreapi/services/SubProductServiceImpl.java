@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.services;
 
+import com.siemens.webstore.webstoreapi.exceptions.SubProductNotFoundException;
 import com.siemens.webstore.webstoreapi.models.SubProduct;
 
 import com.siemens.webstore.webstoreapi.repositories.SubProductRepository;
@@ -28,7 +29,8 @@ public class SubProductServiceImpl implements SubProductService{
 
     @Override
     public SubProduct findSubProductById(String subProductId) {
-        return this.subProductRepository.findById(subProductId).orElse(null);
+        return this.subProductRepository.findById(subProductId).orElseThrow(()->new
+                SubProductNotFoundException("Sub Product Not Found because the given Product Id Not Existing"));
     }
 
     @Override
