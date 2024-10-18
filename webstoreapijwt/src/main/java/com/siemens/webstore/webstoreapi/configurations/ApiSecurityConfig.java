@@ -2,6 +2,7 @@ package com.siemens.webstore.webstoreapi.configurations;
 
 
 
+import com.siemens.webstore.webstoreapi.filters.JwtAuthenticationFilter;
 import com.siemens.webstore.webstoreapi.services.UserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -30,8 +31,8 @@ public class ApiSecurityConfig  {
 	@Autowired
 	private UserAuthService userAuthService;
 
-//	@Autowired
-//	private JwtAuthenticationFilter jwtAuthenticationFilter;
+	@Autowired
+	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	@Autowired
 	private ApiAuthenticationEntryPoint authenticationEntryPoint;
@@ -41,10 +42,10 @@ public class ApiSecurityConfig  {
 	
 
 
-	/*@Autowired
+	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userAuthService).passwordEncoder(passwordEncoder());
-	}*/
+	}
 	
 	@Bean
 	 public WebSecurityCustomizer ignoringCustomizer() {
@@ -67,21 +68,21 @@ public class ApiSecurityConfig  {
 		 .exceptionHandling((exception)-> 
 		 exception.authenticationEntryPoint(authenticationEntryPoint))
 		 .sessionManagement(sess -> sess.sessionCreationPolicy
-				 (SessionCreationPolicy.STATELESS))  ;
+				 (SessionCreationPolicy.STATELESS))
 		 
-//	     .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+	     .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		      return http.build();
 	   }
 
 
 
-	//@Bean
-	/*public RegistrationBean jwtAuthFilterRegister(JwtAuthenticationFilter filter) {
+	@Bean
+	public RegistrationBean jwtAuthFilterRegister(JwtAuthenticationFilter filter) {
 		FilterRegistrationBean<JwtAuthenticationFilter> registrationBean = new FilterRegistrationBean<>(filter);
 		registrationBean.setEnabled(false);
 		return registrationBean;
 	}
-*/
+
 	 @Bean
      public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
          return authenticationConfiguration.getAuthenticationManager();
