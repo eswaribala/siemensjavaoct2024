@@ -1,5 +1,6 @@
 package com.siemens.webstore.webstoreapi.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Role {
     private String roleName;
 
     @ManyToMany(mappedBy = "roles")
+    @Schema(hidden = true)
     private List<User> users;
 
     public Role(String role) {
