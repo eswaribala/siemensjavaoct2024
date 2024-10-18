@@ -2,6 +2,7 @@ package com.siemens.webstore.webstoreapi.configurations;
 
 
 
+import com.siemens.webstore.webstoreapi.services.UserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.RegistrationBean;
@@ -26,11 +27,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class ApiSecurityConfig  {
 
-	/*@Autowired
+	@Autowired
 	private UserAuthService userAuthService;
 
-	@Autowired
-	private JwtAuthenticationFilter jwtAuthenticationFilter;*/
+//	@Autowired
+//	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	@Autowired
 	private ApiAuthenticationEntryPoint authenticationEntryPoint;
