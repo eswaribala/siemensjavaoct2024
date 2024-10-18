@@ -23,6 +23,13 @@ public class GlobalExceptionHandler {
                 .body(new ResponseWrapper(subProductNotFoundException.getMessage()));
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ResponseWrapper> handleUserNotFoundException
+            (UserNotFoundException userNotFoundException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ResponseWrapper(userNotFoundException.getMessage()));
+    }
+
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ResponseWrapper> handleAnyException
             (RuntimeException runtimeException){
