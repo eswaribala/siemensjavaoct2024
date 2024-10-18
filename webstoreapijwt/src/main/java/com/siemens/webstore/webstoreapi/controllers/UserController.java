@@ -57,14 +57,33 @@ public class UserController {
         }
 
     }
-    @PostMapping(value="/v1.0/signin")
+    @PostMapping(value="/signin")
     public ResponseEntity<JwtResponse> generateJwtToken(@RequestBody JwtRequest jwtRequest) {
 
         System.out.println(jwtRequest.getUserName()+""+jwtRequest.getUserPwd());
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(jwtRequest.getUserName(), jwtRequest.getUserPwd()));
+
+        } catch (DisabledException e) {
+            throw new DisabledUserException("User Inactive");
+        } catch (BadCredentialsException e) {
+            throw new InvalidUserCredentialsException("Invalid Credentials");
+        }
+        UserDetails userDetails = userAuthService.loadUserByUsername(jwtRequest.getUserName());
+        String username = userDetails.getUsername();
+        String userpwd = userDetails.getPassword();
+        List<String> roles = userDetails.getAuthorities().stream().map(r -> r.getAuthority())
+                .collect(Collectors.toList());
 
 
-        return new ResponseEntity<JwtResponse>(new JwtResponse("245872485"), HttpStatus.OK);
+        User user = new User();
+        user.setUserName(username);
+        user.setPassword(userpwd);
+        List<Role> roleList = new ArrayList(roles);
+        user.setRoles(roleList);
+        String token = jwtManager.generateToken(user);
+        return new ResponseEntity<JwtResponse>(new JwtResponse(token), HttpStatus.OK);
     }
-
 
 }
