@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="Product")
@@ -15,9 +16,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "product-id")
+    @GenericGenerator(name = "product-id", strategy = "com.siemens.webstore.webstoreapi.models.CustomIdGenerator") // Adjust package name
     @Column(name="Product_Id")
-    protected long productId;
+    protected String productId;
     @Column(name="Cost")
     protected long cost;
     @Column(name="Rating")
